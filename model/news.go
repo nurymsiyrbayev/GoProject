@@ -1,18 +1,20 @@
 package model
 
 type News struct {
-	NewsId uint
-	Title string
-	Author string
-	Text string
+	Id        uint
+	Title     string
+	Author    string
+	Text      string
+	Category  string
 }
 
 type NewsBuilder interface {
-	SetNewsId(uint) newsBuilder
-	SetTitle(string) newsBuilder
-	SetAuthor(string) newsBuilder
-	SetText(string) newsBuilder
-	Build() *News
+	SetId        (uint)    newsBuilder
+	SetTitle     (string)  newsBuilder
+	SetAuthor    (string)  newsBuilder
+	SetText      (string)  newsBuilder
+	SetCategory  (string)  newsBuilder
+  Build()      *News
 }
 
 type newsBuilder struct {
@@ -25,8 +27,8 @@ func GetNewsBuilder() *newsBuilder {
 	}
 }
 
-func (n *newsBuilder) SetNewsId(id uint) *newsBuilder {
-	n.news.NewsId = id
+func (n *newsBuilder) Id(id uint) *newsBuilder {
+	n.news.Id = id
 	return n
 }
 
@@ -42,6 +44,11 @@ func (n *newsBuilder) SetAuthor(author string) *newsBuilder {
 
 func (n *newsBuilder) SetText(text string) *newsBuilder {
 	n.news.Text = text
+	return n
+}
+
+func (n *newsBuilder) SetCategory(category string) *newsBuilder {
+	n.news.Category = category
 	return n
 }
 
